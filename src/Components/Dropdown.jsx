@@ -30,8 +30,11 @@ const Dropdown = () => {
   }, []);
 
   const handleDropdownChange = (e, type) => {
-    if (type === 'ComparisonType' && e.target.value === 'teammate') {
-      setDriverB('');
+    if (type === 'ComparisonType') {
+      setPeriod('');
+      if (e.target.value === 'teammate') {
+        setDriverB('');
+      }
     }
     eval(`set${type}`)(e.target.value);
   };
