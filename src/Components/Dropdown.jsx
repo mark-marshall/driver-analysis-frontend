@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDrivers } from '../async/axios';
 
-const Dropdown = () => {
+const Dropdown = ({ loadData }) => {
   const initState = {
     drivers: [],
     driverA: '',
@@ -29,12 +29,50 @@ const Dropdown = () => {
     });
   }, []);
 
+  const fireAnalysis = () => {
+    if (comparisonType === 'teammate') {
+      if (period === 'events') {
+        // eventsTeammate
+        loadData('eventsTeammate', {
+          target: driverA,
+          year: year,
+          session: sessionType,
+        });
+      } else {
+        // yearlyTeammate
+        loadData('yearlyTeammate', {
+          target: driverA,
+        });
+      }
+    } else {
+      if (period === 'events') {
+        // eventsDirect
+        loadData('eventsDirect', {
+          target: driverA,
+          competitor: driverB,
+          year: year,
+          session: sessionType,
+        });
+      } else {
+        // yearlyDirect
+        loadData('yearlyDirect', {
+          target: driverA,
+          competitor: driverB,
+        });
+      }
+    }
+  };
+
   const handleDropdownChange = (e, type) => {
     if (type === 'ComparisonType') {
       setPeriod('');
       if (e.target.value === 'teammate') {
         setDriverB('');
       }
+    }
+    if (type === 'Period' && e.target.value === 'yearly') {
+      setYear('');
+      setSessionType('');
     }
     eval(`set${type}`)(e.target.value);
   };
@@ -144,7 +182,7 @@ const Dropdown = () => {
         period === 'events' &&
         year &&
         sessionType) ? (
-        <button>Run</button>
+        <button onClick={fireAnalysis}>Run</button>
       ) : null}
     </div>
   );

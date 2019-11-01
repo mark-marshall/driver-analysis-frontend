@@ -1,11 +1,26 @@
-import React from 'react';
-
-import Dropdown from './Components/Dropdown'
+import React, { useState } from 'react';
+import { analyse } from './async/axios';
+import Dropdown from './Components/Dropdown';
+import Chart from './Components/Chart';
 
 function App() {
+  const initState = {
+    data: '',
+  };
+  const [data, setData] = useState(initState.data);
+
+  const loadData = (type, body) => {
+    console.log(body)
+    console.log(type)
+    analyse(type, body).then(res => {
+      setData(res);
+    });
+  };
+
   return (
     <div>
-      <Dropdown />
+      <Dropdown loadData={loadData} />
+      <Chart data={data} />
     </div>
   );
 }

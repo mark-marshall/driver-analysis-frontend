@@ -10,36 +10,9 @@ export const getDrivers = async () => {
   }
 };
 
-export const yearlyDirect = async body => {
+export const analyse = async (type, body) => {
   try {
-    const res = await axios.post(`${paths.main}${paths.yearlyDirect}`);
-    return res.data;
-  } catch (error) {
-    console.error(error.message);
-  }
-};
-
-export const yearlyTeammate = async body => {
-  try {
-    const res = await axios.post(`${paths.main}${paths.yearlyTeammate}`);
-    return res.data;
-  } catch (error) {
-    console.error(error.message);
-  }
-};
-
-export const eventsDirect = async body => {
-  try {
-    const res = await axios.post(`${paths.main}${paths.eventsDirect}`);
-    return res.data;
-  } catch (error) {
-    console.error(error.message);
-  }
-};
-
-export const eventsTeammate = async body => {
-  try {
-    const res = await axios.post(`${paths.main}${paths.eventsTeammate}`);
+    const res = await axios.post(`${paths.main}${paths[type]}`, body);
     return res.data;
   } catch (error) {
     console.error(error.message);
