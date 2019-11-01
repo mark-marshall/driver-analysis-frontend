@@ -10,8 +10,6 @@ function App() {
   const [data, setData] = useState(initState.data);
 
   const loadData = (type, body) => {
-    console.log(body)
-    console.log(type)
     analyse(type, body).then(res => {
       setData(res);
     });
