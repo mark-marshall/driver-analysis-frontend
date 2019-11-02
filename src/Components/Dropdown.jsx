@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 import { getDrivers } from '../async/axios';
 import { years, sessions } from '../utils/consts';
 
@@ -79,7 +81,7 @@ const Dropdown = ({ loadData }) => {
   };
 
   return (
-    <div>
+    <DropdownWrapper>
       {drivers.length ? (
         <>
           <select
@@ -182,8 +184,31 @@ const Dropdown = ({ loadData }) => {
         sessionType) ? (
         <button onClick={fireAnalysis}>Run</button>
       ) : null}
-    </div>
+    </DropdownWrapper>
   );
 };
+
+const DropdownWrapper = styled.div`
+  select {
+    font-size: 1em;
+    width: 200px;
+    height: 50px;
+    border: none;
+    margin: 2px;
+    background: rgb(199,199.204);
+    cursor: pointer;
+  }
+
+  button {
+    font-size: 1em;
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin: 2px;
+    background: rgb(173,232,188);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+`
 
 export default Dropdown;
