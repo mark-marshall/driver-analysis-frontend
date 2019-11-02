@@ -1,4 +1,4 @@
-const paths = {
+export const paths = {
   'main': 'https://driver-analysis.herokuapp.com/',
   'drivers': 'drivers',
   'yearlyDirect': 'yearly/direct',
@@ -7,4 +7,6 @@ const paths = {
   'eventsTeammate': 'events/teammate',
 };
 
-export default paths;
+export const years = ['2015','2016','2017','2018','2019']
+
+export const sessions = ['P1','P2','P3','Qu','Q2','Q3','Race']

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 import { getDrivers } from '../async/axios';
+import { years, sessions } from '../utils/consts';
 
 const Dropdown = ({ loadData }) => {
   const initState = {
@@ -78,7 +81,7 @@ const Dropdown = ({ loadData }) => {
   };
 
   return (
-    <div>
+    <DropdownWrapper>
       {drivers.length ? (
         <>
           <select
@@ -142,11 +145,11 @@ const Dropdown = ({ loadData }) => {
             <option diasble="true" value="">
               select a year
             </option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2016">2017</option>
-            <option value="2016">2018</option>
-            <option value="2016">2019</option>
+            {years.map(year => (
+              <option value={year} key={year}>
+                {year}
+              </option>
+            ))}
           </select>
           <select
             name="sesionType"
@@ -155,14 +158,11 @@ const Dropdown = ({ loadData }) => {
             <option diasble="true" value="">
               select a session type
             </option>
-            <option value="P1">P1</option>
-            <option value="P2">P2</option>
-            <option value="P3">P3</option>
-            <option value="Qu">Qu</option>
-            <option value="Q1">Q1</option>
-            <option value="Q2">Q2</option>
-            <option value="Q3">Q3</option>
-            <option value="Race">Race</option>
+            {sessions.map(session => (
+              <option value={session} key={session}>
+                {session}
+              </option>
+            ))}
           </select>
         </>
       ) : null}
@@ -184,8 +184,31 @@ const Dropdown = ({ loadData }) => {
         sessionType) ? (
         <button onClick={fireAnalysis}>Run</button>
       ) : null}
-    </div>
+    </DropdownWrapper>
   );
 };
+
+const DropdownWrapper = styled.div`
+  select {
+    font-size: 1em;
+    width: 200px;
+    height: 50px;
+    border: none;
+    margin: 2px;
+    background: rgb(199,199.204);
+    cursor: pointer;
+  }
+
+  button {
+    font-size: 1em;
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin: 2px;
+    background: rgb(173,232,188);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+`
 
 export default Dropdown;
