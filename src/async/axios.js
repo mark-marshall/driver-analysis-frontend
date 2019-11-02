@@ -1,5 +1,5 @@
 import axios from 'axios';
-import paths from '../utils/consts';
+import { paths } from '../utils/consts';
 
 export const getDrivers = async () => {
   try {
