@@ -207,13 +207,16 @@ const DropdownWrapper = styled.div`
     font-size: 1em;
     height: 50px;
     width: 50px;
-    border: none;
     margin: 2px;
+    border: none;
     background: rgb(195, 255, 255);
-    border-radius: 2px;
+    border-radius: 5px;
     cursor: pointer;
     font-family: 'Noto Sans', sans-serif;
-    color: rgb(58,58,60);
+    color: rgb(58, 58, 60);
+    :hover {
+      background: rgb(153, 235, 228);
+    }
   }
 `;
 
