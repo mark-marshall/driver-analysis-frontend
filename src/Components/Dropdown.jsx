@@ -5,6 +5,7 @@ import { getDrivers } from '../async/axios';
 import { years, sessions } from '../utils/consts';
 
 const Dropdown = ({ loadData }) => {
+  // State and state setters
   const initState = {
     drivers: [],
     driverA: '',
@@ -14,7 +15,6 @@ const Dropdown = ({ loadData }) => {
     year: '',
     sessionType: '',
   };
-
   const [drivers, setDrivers] = useState(initState.drivers);
   const [driverA, setDriverA] = useState(initState.driverA);
   const [driverB, setDriverB] = useState(initState.driverB);
@@ -25,13 +25,14 @@ const Dropdown = ({ loadData }) => {
   const [year, setYear] = useState(initState.year);
   const [sessionType, setSessionType] = useState(initState.sessionType);
 
+  // grab the driver list on mount to populate dropdowns
   useEffect(() => {
-    // get list of drivers on mount
     getDrivers().then(res => {
       setDrivers(res);
     });
   }, []);
 
+  // send requests to backend
   const fireAnalysis = () => {
     if (comparisonType === 'teammate') {
       if (period === 'events') {
@@ -66,6 +67,7 @@ const Dropdown = ({ loadData }) => {
     }
   };
 
+  // change state upon dropdown changes
   const handleDropdownChange = (e, type) => {
     if (type === 'ComparisonType') {
       setPeriod('');
@@ -188,14 +190,17 @@ const Dropdown = ({ loadData }) => {
   );
 };
 
+// Styled Components
 const DropdownWrapper = styled.div`
   select {
-    font-size: 1em;
+    font-size: 0.9em;
     width: 200px;
     height: 50px;
     border: none;
     margin: 2px;
     cursor: pointer;
+    font-family: 'Noto Sans', sans-serif;
+    color: rgb(58, 58, 60);
   }
 
   button {
@@ -204,10 +209,12 @@ const DropdownWrapper = styled.div`
     width: 50px;
     border: none;
     margin: 2px;
-    background: rgb(195,255,255);
+    background: rgb(195, 255, 255);
     border-radius: 2px;
     cursor: pointer;
+    font-family: 'Noto Sans', sans-serif;
+    color: rgb(58,58,60);
   }
-`
+`;
 
 export default Dropdown;
