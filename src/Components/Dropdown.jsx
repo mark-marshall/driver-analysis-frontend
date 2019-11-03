@@ -134,7 +134,7 @@ const Dropdown = ({ loadData }) => {
             select a period
           </option>
           <option value="events">Event Specific</option>
-          <option value="yearly">Yearly Average</option>
+          <option value="yearly">Yearly Cumulative</option>
         </select>
       ) : null}
       {period === 'events' &&
@@ -195,7 +195,6 @@ const DropdownWrapper = styled.div`
     height: 50px;
     border: none;
     margin: 2px;
-    background: rgb(199,199.204);
     cursor: pointer;
   }
 
@@ -205,7 +204,7 @@ const DropdownWrapper = styled.div`
     width: 50px;
     border: none;
     margin: 2px;
-    background: rgb(173,232,188);
+    background: rgb(195,255,255);
     border-radius: 2px;
     cursor: pointer;
   }
